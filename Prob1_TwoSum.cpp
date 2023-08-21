@@ -1,3 +1,8 @@
+/*write the documentation for the following code*/
+// Time Complexity: O(N)
+// Space Complexity: O(N)
+
+
 class Solution
 {
 public:
