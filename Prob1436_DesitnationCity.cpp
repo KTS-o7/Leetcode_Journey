@@ -30,3 +30,27 @@ public:
 
 // Time complexity  : O(n)
 // Space complexity : O(n)
+
+// Other Solution
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        auto fastio=[](){
+            std::ios::sync_with_stdio(false);
+            cin.tie(nullptr);
+            cout.tie(nullptr);
+            return nullptr;
+        };
+        set<string>src;
+        for(int i=0;i<paths.size();i++)
+        {
+            src.insert(paths[i][0]);
+        }
+         for(int i=0;i<paths.size();i++)
+        {
+            if(src.find(paths[i][1])==src.end())
+                return paths[i][1];
+        }
+        return "";
+    }
+};
