@@ -22,3 +22,4 @@ public:
 // 2. If it is 9, we change it to 0 and move to the next element.
 // 3. If it is not 9, we increment it by 1 and return the array.
 // 4. If all the elements are 9, we insert 1 at the beginning of the array and return the array.
+// 5. This is because if all the elements are 9, then the array will become 1000...0, so we need to insert 1 at the beginning of the array.
