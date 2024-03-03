@@ -72,3 +72,41 @@ public:
 // 4. Traverse through the linked list and move both the pointers until the first pointer reaches the end.
 // 5. Now the second pointer is at the node before the node to be removed.
 // 6. Remove the node and return the head.
+
+// Approach 2
+// Finding length and then removing the node
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* temp = head;
+        int len = 0;
+        while(temp != nullptr) {
+            len++;
+            temp = temp->next;
+        }
+        if(len == n) {
+            ListNode* toDelete = head;
+            head = head->next;
+            delete toDelete;
+            return head;
+        }
+        temp = head;
+        int pos = len-n-1;
+        for(int i = 0; i < pos; i++) {
+            temp = temp->next;
+        }
+        ListNode* toDelete = temp->next;
+        temp->next = (temp->next)->next;
+        delete toDelete;
+        return head;
+    }
+};
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// Code logic explained :
+// 1. Count the number of nodes in the linked list.
+// 2. If the number of nodes is equal to n then remove the head and return the next node.
+// 3. Traverse through the linked list and stop at the node before the node to be removed.
+// 4. Remove the node and return the head.
