@@ -5,6 +5,9 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLastWord(string s) {
+        std::ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
         // Get the length of the input string
         int size = s.length();
 
