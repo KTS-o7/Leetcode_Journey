@@ -75,3 +75,44 @@ public:
 // 7. We then decrement the right pointer.
 // 8. We continue this process until the left pointer is less than the right pointer.
 // 9. We add the water trapped on each building to the total water trapped and return the total water trapped.
+
+
+// Approach 3: Using stack
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        stack<int> st;
+        int water = 0;
+        for(int i = 0; i < height.size(); i++) {
+            while(!st.empty() && height[i] > height[st.top()]) {
+                int top = st.top();
+                st.pop();
+                if(st.empty()) {
+                    break;
+                }
+                int distance = i - st.top() - 1;
+                int boundedHeight = min(height[i], height[st.top()]) - height[top];
+                water += distance * boundedHeight;
+            }
+            st.push(i);
+        }
+        return water;
+    }
+};
+
+// Time complexity: O(n)
+// Space complexity: O(n)
+
+// Logic explained :
+/*Initialization: A stack st is initialized to keep track of the indices of the bars. The variable water is initialized to 0 to keep track of the total trapped water.
+Iteration Over Heights: The code iterates over each bar (represented by its height) in the height vector.
+Stack Operations:
+While the stack is not empty and the current bar's height is greater than the height of the bar at the top of the stack, the code performs the following operations:
+It pops the top element from the stack, which represents the index of the bar that is currently being considered as a potential boundary for trapping water.
+If the stack becomes empty after popping, it breaks out of the loop because there are no more bars to consider as boundaries.
+It calculates the distance between the current bar and the bar at the top of the stack. This distance represents the width of the trapped water.
+It calculates the bounded height, which is the minimum height between the current bar and the bar at the top of the stack, minus the height of the bar that was just popped. This represents the height of the trapped water.
+It adds the product of the distance and the bounded height to the total trapped water.
+After the loop, it pushes the current bar's index onto the stack. This is done to keep track of the bars that are yet to be considered as potential boundaries for trapping water.
+Return Total Trapped Water: Finally, the function returns the total trapped water.
+The logic behind this solution is based on the observation that the amount of water that can be trapped between two bars is determined by the height of the shorter bar and the distance between the two bars. By using a stack, the algorithm efficiently keeps track of the bars that are yet to be considered as potential boundaries for trapping water, ensuring that the trapped water is calculated correctly.*/
